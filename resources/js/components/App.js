@@ -1,24 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
+import Footer from "./Footer";
+import BlogList from "./pages/BlogList";
+import Index from "./Index";
+import Header from "./Header";
+import About from "./pages/About";
+import BlogPost from "./pages/BlogPost";
 
 function App() {
     return (
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card">
-                        <div className="card-header">Example Component</div>
+        <Router>
 
-                        <div className="card-body">I'm an example component!</div>
-                    </div>
-                </div>
+            <Header/>
+
+            <div className="main-wrapper">
+                <Switch>
+                    <Route path="/" exact={true}>
+                        <Index />
+                    </Route>
+                    <Route path="/BlogList" exact={true}>
+                        <BlogList />
+                    </Route>
+                    <Route path="/About" exact={true}>
+                        <About />
+                    </Route>
+                    <Route path="/BlogPost" exact={true}>
+                        <BlogPost />
+                    </Route>
+                </Switch>
+
+                <Footer/>
             </div>
-        </div>
+
+        </Router>
     );
 }
 
 export default App;
 
 if (document.getElementById('root')) {
-    ReactDOM.render(<App />, document.getElementById('root'));
+    ReactDOM.render(<App/>, document.getElementById('root'));
 }
